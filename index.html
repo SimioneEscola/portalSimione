@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portal Simioni · Sistemas Escolares 2026</title>
+<!-- PWA -->
+<meta name="application-name" content="Portal Sim PEI">
+<meta name="description" content="Portal de Sistemas Escolares da EE Prof. Luiz Simioni Sobrinho · PEI 2026">
+<meta name="theme-color" content="#0A2F5C">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portal Sim">
+<link rel="manifest" id="pwa-manifest">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -387,6 +396,36 @@ body::before {
 .cat-lideranca { --card-color-a: #4A148C; --card-color-b: #CE93D8; }
 .cat-lideranca .sc-tag { background: #F3E5F5; color: #4A148C; }
 
+/* NOTEBOOKLM CARD */
+.cat-notebooklm .sc-icon { background: #E8F5E9; }
+.cat-notebooklm { --card-color-a: #1A73E8; --card-color-b: #34A853; }
+.cat-notebooklm .sc-tag { background: #E3F2FD; color: #1A73E8; }
+.destaque-notebooklm {
+  border: 2px solid #1A73E8 !important;
+  background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 100%) !important;
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.18) !important;
+}
+.destaque-notebooklm::before {
+  background: linear-gradient(90deg, #1A73E8, #34A853) !important;
+}
+.destaque-notebooklm .sc-icon { background: #E3F2FD !important; }
+.destaque-notebooklm .sc-title { color: #1A73E8 !important; }
+.destaque-notebooklm .sc-tag { background: #E3F2FD !important; color: #1A73E8 !important; }
+.nlm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(90deg, #1A73E8, #34A853);
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  animation: pulseBadge 2s ease infinite;
+}
+
 /* FOOTER */
 .portal-footer {
   background: var(--navy); padding: 24px;
@@ -410,6 +449,50 @@ body::before {
   .login-box { padding: 36px 28px; }
   .cards-grid { grid-template-columns: 1fr; }
 }
+
+/* ══════════════════════════════
+   PWA INSTALL BUTTON
+══════════════════════════════ */
+#pwa-install-banner {
+  display: none;
+  position: fixed; bottom: 24px; right: 24px; z-index: 500;
+  animation: fadeUp .5s ease both;
+}
+#pwa-install-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 600;
+  padding: 12px 20px; border-radius: 50px;
+  cursor: pointer; box-shadow: 0 8px 32px rgba(10,47,92,0.45);
+  transition: all .2s; white-space: nowrap;
+}
+#pwa-install-btn:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(10,47,92,0.5); }
+#pwa-install-btn:active { transform: scale(.97); }
+#pwa-install-btn .pwa-icon { font-size: 1.1rem; }
+#pwa-install-close {
+  position: absolute; top: -8px; right: -8px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--navy2); border: 2px solid rgba(255,255,255,0.3);
+  color: #fff; font-size: 0.65rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+#pwa-install-close:hover { background: #c0392b; }
+
+/* Login install hint */
+#pwa-login-hint {
+  display: none;
+  margin-top: 16px; padding: 10px 14px;
+  background: rgba(66,165,245,0.12);
+  border: 1px solid rgba(66,165,245,0.25);
+  border-radius: 8px;
+  font-size: 0.68rem; color: rgba(255,255,255,0.7);
+  text-align: center; line-height: 1.5;
+  animation: fadeUp .6s ease .45s both;
+}
+#pwa-login-hint strong { color: var(--blue-l); }
 </style>
 </head>
 <body>
@@ -435,8 +518,20 @@ body::before {
     </div>
     <button class="login-btn" onclick="doLogin()">Entrar no Portal</button>
     <p class="login-error" id="login-error">Senha incorreta. Tente novamente.</p>
+    <div id="pwa-login-hint">
+      📲 <strong>Instalar como app</strong><br>Toque em <strong>Instalar</strong> abaixo ou use o menu do navegador → "Adicionar à tela inicial"
+    </div>
     <p class="login-badge">Simioni · Sistemas Educacionais · 2026</p>
   </div>
+</div>
+
+<!-- PWA INSTALL BANNER -->
+<div id="pwa-install-banner">
+  <button id="pwa-install-btn" onclick="pwaInstall()">
+    <span class="pwa-icon">📲</span>
+    Instalar Portal no dispositivo
+  </button>
+  <button id="pwa-install-close" onclick="pwaDismiss()" title="Fechar">✕</button>
 </div>
 
 <!-- ═══ PORTAL SCREEN ═══ -->
@@ -451,6 +546,7 @@ body::before {
         <div class="h-name">Portal de Sistemas Escolares</div>
       </div>
       <div class="h-date" id="h-date"></div>
+      <button id="h-install-btn" onclick="pwaInstall()" title="Instalar Portal" style="display:none; background:rgba(66,165,245,0.15); border:1px solid rgba(66,165,245,0.35); color:var(--blue-l); font-size:0.62rem; letter-spacing:.06em; text-transform:uppercase; font-family:'DM Mono',monospace; padding:6px 14px; border-radius:4px; cursor:pointer; transition:all .2s; white-space:nowrap;">📲 Instalar</button>
       <button class="h-logout" onclick="doLogout()">↩ Sair</button>
     </div>
   </header>
@@ -466,8 +562,8 @@ body::before {
         <h1>Portal Sim PEI<br><span>EE Luiz Simioni Sobrinho</span></h1>
         <p class="hero-sub">Todos os documentos de gestão, pedagógicos e de apoio aos professores reunidos em um único lugar.</p>
         <div class="hero-stats">
-          <div class="hs-item"><span class="hs-val">14</span><span class="hs-label">Sistemas</span></div>
-          <div class="hs-item"><span class="hs-val">6</span><span class="hs-label">Categorias</span></div>
+          <div class="hs-item"><span class="hs-val">15</span><span class="hs-label">Sistemas</span></div>
+          <div class="hs-item"><span class="hs-val">7</span><span class="hs-label">Categorias</span></div>
           <div class="hs-item"><span class="hs-val">2026</span><span class="hs-label">Ano letivo</span></div>
         </div>
       </div>
@@ -627,6 +723,39 @@ body::before {
         <div class="sc-meta">
           <span class="sc-tag">Pedagógico</span>
           <span class="sc-type">📌 Referência visual</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ── INTELIGÊNCIA ARTIFICIAL · PEI ── -->
+    <div class="section-label">
+      <div class="section-icon" style="background:#E3F2FD; font-size:1.1rem;">🤖</div>
+      <div class="section-label-text">
+        <div class="sl-title">Inteligência Artificial · PEI</div>
+        <div class="sl-sub">Assistente de estudo e dúvidas sobre os documentos do programa</div>
+      </div>
+    </div>
+    <div class="section-rule"></div>
+    <div class="cards-grid">
+
+      <a class="sys-card cat-notebooklm destaque-notebooklm" href="https://notebooklm.google.com/notebook/5378a085-98f6-42eb-bb48-cb91379a1a8c?authuser=1" target="_blank" rel="noopener noreferrer" data-search="notebooklm inteligencia artificial PEI programa ensino integral dúvidas estudo documentos IA google">
+        <div class="sc-top">
+          <div class="sc-icon" style="font-size:1.5rem; display:flex; align-items:center; justify-content:center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#1A73E8"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#34A853" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="sc-arrow">↗</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-title">Assistente PEI <span class="nlm-badge">✦ IA</span></div>
+          <div class="sc-desc">Base de conhecimento do Programa de Ensino Integral. Tire dúvidas, pesquise documentos e aprofunde estudos com Inteligência Artificial via NotebookLM Google.</div>
+        </div>
+        <div class="sc-meta">
+          <span class="sc-tag">NotebookLM · PEI</span>
+          <span class="sc-type">🤖 Google NotebookLM</span>
         </div>
       </a>
 
@@ -870,6 +999,142 @@ function filterCards() {
 
 // ─── START ───
 setLogos(LOGO_SRC);
+
+// ══════════════════════════════════════════════════════
+// PWA — Progressive Web App
+// ══════════════════════════════════════════════════════
+
+// 1. Gera o manifest.json dinamicamente com o logo embutido
+(function buildManifest() {
+  const manifest = {
+    name: 'Portal Sim PEI · Simioni 2026',
+    short_name: 'Portal Sim',
+    description: 'Portal de Sistemas Escolares da EE Prof. Luiz Simioni Sobrinho · PEI',
+    start_url: './',
+    display: 'standalone',
+    background_color: '#0A2F5C',
+    theme_color: '#0A2F5C',
+    orientation: 'portrait-primary',
+    lang: 'pt-BR',
+    icons: [
+      { src: LOGO_SRC, sizes: '192x192', type: 'image/jpeg', purpose: 'any maskable' },
+      { src: LOGO_SRC, sizes: '512x512', type: 'image/jpeg', purpose: 'any maskable' }
+    ],
+    categories: ['education', 'productivity'],
+    shortcuts: [
+      {
+        name: 'Assistente PEI (IA)',
+        short_name: 'IA PEI',
+        description: 'Abrir NotebookLM do PEI',
+        url: 'https://notebooklm.google.com/notebook/5378a085-98f6-42eb-bb48-cb91379a1a8c?authuser=1'
+      }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  document.getElementById('pwa-manifest').href = url;
+
+  // Apple touch icon
+  const appleLink = document.createElement('link');
+  appleLink.rel = 'apple-touch-icon';
+  appleLink.href = LOGO_SRC;
+  document.head.appendChild(appleLink);
+})();
+
+// 2. Service Worker inline — cacheia o próprio arquivo HTML
+(function registerSW() {
+  if (!('serviceWorker' in navigator)) return;
+  const swCode = `
+const CACHE = 'portal-sim-v1';
+const URLS = [self.location.href.replace('/sw-inline.js','')];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(
+    keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+  )).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      const fresh = fetch(e.request).then(res => {
+        if (res && res.status === 200) {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      }).catch(() => cached);
+      return cached || fresh;
+    })
+  );
+});
+  `;
+  const blob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl, { scope: './' })
+    .then(() => console.log('[PWA] Service Worker registrado'))
+    .catch(e => console.warn('[PWA] SW falhou:', e));
+})();
+
+// 3. Captura o evento de instalação e mostra o banner
+let pwaPrompt = null;
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  pwaPrompt = e;
+  // Mostra banner flutuante
+  document.getElementById('pwa-install-banner').style.display = 'block';
+  // Mostra hint na tela de login
+  document.getElementById('pwa-login-hint').style.display = 'block';
+  // Mostra botão no header (quando portal estiver aberto)
+  const hBtn = document.getElementById('h-install-btn');
+  if (hBtn) hBtn.style.display = 'block';
+});
+
+window.addEventListener('appinstalled', function() {
+  pwaPrompt = null;
+  document.getElementById('pwa-install-banner').style.display = 'none';
+  document.getElementById('pwa-login-hint').style.display = 'none';
+  const hBtn = document.getElementById('h-install-btn');
+  if (hBtn) hBtn.style.display = 'none';
+  // Toast de confirmação
+  showToast('✅ Portal instalado com sucesso!');
+});
+
+function pwaInstall() {
+  if (pwaPrompt) {
+    pwaPrompt.prompt();
+    pwaPrompt.userChoice.then(function(result) {
+      if (result.outcome === 'accepted') {
+        pwaPrompt = null;
+        document.getElementById('pwa-install-banner').style.display = 'none';
+      }
+    });
+  } else {
+    // iOS Safari — não tem beforeinstallprompt, mostra instrução manual
+    showToast('📲 No iOS: toque em Compartilhar → "Adicionar à Tela de Início"');
+  }
+}
+
+function pwaDismiss() {
+  document.getElementById('pwa-install-banner').style.display = 'none';
+}
+
+// 4. Toast de feedback
+function showToast(msg) {
+  let t = document.getElementById('pwa-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'pwa-toast';
+    t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-family:Sora,sans-serif;font-size:.78rem;padding:12px 24px;border-radius:50px;box-shadow:0 8px 32px rgba(10,47,92,.5);z-index:9999;border:1px solid rgba(255,255,255,.15);white-space:nowrap;transition:opacity .3s;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.opacity = '0'; }, 3500);
+}
 </script>
 </body>
 </html>
