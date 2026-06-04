@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Portal Sim">
-<link rel="manifest" id="pwa-manifest">
+<link rel="manifest" href="/manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1110,8 +1110,25 @@ function filterCards() {
 // ─── START ───
 setLogos(LOGO_SRC);
 
-// Mostra hint de instalação e botão do header sempre
+// ══════════════════════════════════════════════════════
+// PWA — Service Worker real (arquivo externo sw.js)
+// ══════════════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => {
+        console.log('[PWA] Service Worker registrado:', reg.scope);
+      })
+      .catch(err => {
+        console.warn('[PWA] SW falhou:', err);
+      });
+  });
+}
+
+// Mostra hint de instalação na tela de login sempre
 document.getElementById('pwa-login-hint').style.display = 'block';
+
+// Mostra botão Instalar no header após login
 function showInstallBtn() {
   const btn = document.getElementById('h-install-btn');
   if (btn) btn.style.display = 'inline-flex';
@@ -1120,8 +1137,6 @@ function showInstallBtn() {
 // ══════════════════════════════════════════════════════
 // INSTALAR PORTAL — Guia por dispositivo
 // ══════════════════════════════════════════════════════
-
-// Detecta o dispositivo
 function detectDevice() {
   const ua = navigator.userAgent;
   if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
