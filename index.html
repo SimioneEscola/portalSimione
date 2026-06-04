@@ -336,6 +336,45 @@ body::before {
 .cat-gestao { --card-color-a: #0D47A1; --card-color-b: #42A5F5; }
 .cat-gestao .sc-tag { background: #E3F2FD; color: #0D47A1; }
 
+/* DESTAQUE VERMELHO */
+.destaque-vermelho { 
+  border: 2px solid #D32F2F !important; 
+  background: linear-gradient(135deg, #FFEBEE 0%, #FFFFFF 100%) !important;
+  box-shadow: 0 4px 20px rgba(211, 47, 47, 0.15) !important;
+}
+.destaque-vermelho::before {
+  background: linear-gradient(90deg, #B71C1C, #EF5350) !important;
+}
+.destaque-vermelho .sc-icon { background: #FFCDD2 !important; }
+.destaque-vermelho .sc-title { color: #B71C1C !important; }
+.destaque-vermelho .sc-tag { background: #FFCDD2 !important; color: #B71C1C !important; }
+
+/* PULSE BADGE */
+.pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #D32F2F;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+  animation: pulseBadge 2s ease infinite;
+}
+.pulse-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: #fff;
+  border-radius: 50%;
+}
+@keyframes pulseBadge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 .cat-pedagogico .sc-icon { background: #E8F5E9; }
 .cat-pedagogico { --card-color-a: #1B5E20; --card-color-b: #66BB6A; }
 .cat-pedagogico .sc-tag { background: #E8F5E9; color: #1B5E20; }
@@ -424,11 +463,11 @@ body::before {
       </div>
       <div class="hero-text">
         <div class="hero-tag">Painel Central · 2026</div>
-        <h1>Sistemas & Ferramentas<br><span>da Escola Simioni</span></h1>
+        <h1>Portal Sim PEI<br><span>EE Luiz Simioni Sobrinho</span></h1>
         <p class="hero-sub">Todos os documentos de gestão, pedagógicos e de apoio aos professores reunidos em um único lugar.</p>
         <div class="hero-stats">
-          <div class="hs-item"><span class="hs-val">12</span><span class="hs-label">Sistemas</span></div>
-          <div class="hs-item"><span class="hs-val">4</span><span class="hs-label">Categorias</span></div>
+          <div class="hs-item"><span class="hs-val">14</span><span class="hs-label">Sistemas</span></div>
+          <div class="hs-item"><span class="hs-val">6</span><span class="hs-label">Categorias</span></div>
           <div class="hs-item"><span class="hs-val">2026</span><span class="hs-label">Ano letivo</span></div>
         </div>
       </div>
@@ -457,6 +496,21 @@ body::before {
     </div>
     <div class="section-rule"></div>
     <div class="cards-grid">
+
+      <a class="sys-card cat-gestao destaque-vermelho" href="https://atendimento.educacao.sp.gov.br/" data-search="fale seduc atendimento portal educação sp">
+        <div class="sc-top">
+          <div class="sc-icon">📞</div>
+          <span class="sc-arrow">↗</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-title">Fale com SEDUC <span class="pulse-badge">Destaque</span></div>
+          <div class="sc-desc">Bem-vindo ao Portal de Atendimento da Seduc - SP.</div>
+        </div>
+        <div class="sc-meta">
+          <span class="sc-tag">Gestão</span>
+          <span class="sc-type">🔗 Portal oficial</span>
+        </div>
+      </a>
 
       <a class="sys-card cat-gestao" href="https://painel-diretorv2.vercel.app/" data-search="painel diretor gestão raffael dashboard">
         <div class="sc-top">
@@ -531,7 +585,7 @@ body::before {
         </div>
       </a>
 
-      <a class="sys-card cat-pedagogico" href="https://plano-de-acao2026v2.vercel.app/" data-search="plano ação copa escola Tarefa SP estratégia">
+      <a class="sys-card cat-pedagogico" href="https://wooden-smart-pei-flow.base44.app" data-search="plano ação copa escola Tarefa SP estratégia">
         <div class="sc-top">
           <div class="sc-icon">🎯</div>
           <span class="sc-arrow">↗</span>
@@ -589,7 +643,7 @@ body::before {
     <div class="section-rule"></div>
     <div class="cards-grid">
 
-      <a class="sys-card cat-lideranca" href="https://plano-de-melhoria-lideres.vercel.app/" data-search="plano melhoria líderes CGPG coordenação pedagógica">
+      <a class="sys-card cat-lideranca" href="https://painellideresfinal.vercel.app/" data-search="plano melhoria líderes CGPG coordenação pedagógica">
         <div class="sc-top">
           <div class="sc-icon">🌟</div>
           <span class="sc-arrow">↗</span>
@@ -739,7 +793,7 @@ body::before {
 
   <!-- FOOTER -->
   <footer class="portal-footer">
-    <p class="pf-text">EE Prof. Luiz Simioni Sobrinho · PEI · SEDUC-SP Diretoria SUL 1 · Portal de Sistemas 2026</p>
+    <p class="pf-text">EE Prof. Luiz Simioni Sobrinho · PEI · SEDUC-SP Diretoria SUL 1 · Portal Sim</p>
   </footer>
 
 </div>
