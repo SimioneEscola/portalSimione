@@ -203,7 +203,7 @@ body::before {
 /* HERO BANNER */
 .hero {
   background: linear-gradient(145deg, var(--navy) 0%, #163d82 100%);
-  padding: 52px 24px 40px; position: relative; overflow: hidden;
+  padding: 40px 24px 32px; position: relative; overflow: hidden;
 }
 .hero::before {
   content: ''; position: absolute; inset: 0;
@@ -214,7 +214,7 @@ body::before {
   background: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px),
               repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 80px);
 }
-.hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; gap: 40px; }
+.hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; display: flex; align-items: center; gap: 32px; }
 .hero-logo-wrap {
   flex-shrink: 0;
   width: 110px; height: 110px; border-radius: 50%;
@@ -245,18 +245,18 @@ body::before {
   display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap;
 }
 .hs-item { display: flex; flex-direction: column; }
-.hs-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: #fff; line-height: 1; }
+.hs-val { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1; }
 .hs-label { font-size: 0.62rem; color: rgba(255,255,255,0.4); letter-spacing: .1em; text-transform: uppercase; margin-top: 2px; }
 
 /* SEARCH BAR */
 .search-section { max-width: 1400px; margin: -20px auto 0; padding: 0 24px; position: relative; z-index: 10; }
 .search-bar {
   background: var(--white);
-  border: 1px solid var(--border2);
-  border-radius: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   display: flex; align-items: center; gap: 12px;
-  padding: 12px 18px;
-  box-shadow: var(--shadow-lg);
+  padding: 10px 18px;
+  box-shadow: 0 2px 12px rgba(10,47,92,0.08);
 }
 .search-bar svg { color: var(--light); flex-shrink: 0; }
 .search-input {
@@ -268,50 +268,55 @@ body::before {
 .search-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--light); border: 1px solid var(--border); padding: 3px 8px; border-radius: 4px; }
 
 /* MAIN CONTENT */
-.portal-main { max-width: 1400px; margin: 0 auto; padding: 32px 24px 80px; }
+.portal-main { max-width: 1400px; margin: 0 auto; padding: 28px 24px 80px; }
 
 /* SECTION */
 .section-label {
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 16px; margin-top: 8px;
+  margin-bottom: 12px; margin-top: 24px;
 }
 .section-icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
+  display: none;
 }
 .section-label-text {}
-.sl-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
-.sl-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: .04em; }
-.section-rule { height: 1px; background: var(--border); margin-bottom: 20px; }
+.sl-title { font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+.sl-sub { display: none; }
+.section-rule { height: 1px; background: var(--border); margin-bottom: 16px; margin-top: 4px; }
 
 /* CARDS GRID */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 32px; }
 
 /* SYSTEM CARD */
 .sys-card {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 20px 24px;
   cursor: pointer;
-  transition: transform .2s, box-shadow .2s, border-color .2s;
+  transition: box-shadow .2s, border-color .2s, background .15s;
   text-decoration: none; color: inherit;
-  display: flex; flex-direction: column; gap: 12px;
+  display: flex; flex-direction: column; gap: 10px;
   position: relative; overflow: hidden;
+  border-left: 3px solid var(--card-color-a, var(--blue));
 }
 .sys-card::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--card-color-a, var(--blue)), var(--card-color-b, var(--blue-l)));
-  border-radius: 14px 14px 0 0;
+  content: none;
 }
 .sys-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(10,47,92,0.10);
+  border-color: var(--card-color-a, var(--blue));
+  background: var(--off);
 }
-.sys-card:hover .sc-arrow { opacity: 1; transform: translate(2px, -2px); }
+.sys-card::after {
+  content: '↗';
+  position: absolute;
+  top: 18px; right: 18px;
+  font-size: 0.75rem;
+  color: var(--light);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.sys-card:hover::after { opacity: 1; }
 
 .sc-top { display: flex; align-items: flex-start; justify-content: space-between; }
 .sc-icon {
@@ -323,20 +328,20 @@ body::before {
   opacity: 0; color: var(--light); transition: opacity .2s, transform .2s;
   font-size: 1rem;
 }
-.sc-body { flex: 1; }
+.sc-body { flex: 1; display: flex; flex-direction: column; }
 .sc-title {
-  font-family: 'Sora', sans-serif; font-size: 0.9rem; font-weight: 700;
-  color: var(--text); margin-bottom: 4px; line-height: 1.3;
+  font-family: 'Sora', sans-serif; font-size: 0.88rem; font-weight: 600;
+  color: var(--text); margin-bottom: 4px; line-height: 1.35;
 }
-.sc-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
+.sc-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.55; margin-top: 2px; }
 .sc-meta {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 12px; border-top: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding-top: 10px; border-top: 1px solid var(--border);
 }
 .sc-tag {
-  font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: .08em;
-  text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
-  font-weight: 500;
+  font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: .1em;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+  font-weight: 600; color: var(--muted) !important; background: var(--off) !important;
 }
 .sc-type { font-size: 0.65rem; color: var(--light); display: flex; align-items: center; gap: 4px; }
 
@@ -556,6 +561,12 @@ body::before {
 }
 #pwa-login-hint:hover { background:rgba(66,165,245,0.2); }
 #pwa-login-hint strong { color:var(--blue-l); }
+
+/* ── MINIMALIST TAG OVERRIDE ── */
+.sys-card .sc-tag {
+  color: var(--muted) !important;
+  background: var(--bg) !important;
+}
 </style>
 </head>
 <body>
@@ -582,7 +593,7 @@ body::before {
     <button class="login-btn" onclick="doLogin()">Entrar no Portal</button>
     <p class="login-error" id="login-error">Senha incorreta. Tente novamente.</p>
     <div id="pwa-login-hint" onclick="showInstallGuide()">
-      📲 <strong>Instalar Portal no dispositivo</strong><br>Toque aqui para ver o guia de instalação
+      <strong>Instalar Portal no dispositivo</strong><br>Toque aqui para ver o guia de instalação
     </div>
     <p class="login-badge">Simioni · Sistemas Educacionais · 2026</p>
   </div>
@@ -592,14 +603,14 @@ body::before {
 <div id="install-modal" onclick="if(event.target===this)closeInstallGuide()">
   <div class="install-sheet">
     <div class="install-sheet-header">
-      <div class="install-sheet-title">📲 Instalar Portal Sim PEI</div>
+      <div class="install-sheet-title">Instalar Portal Sim PEI</div>
       <button class="install-close-btn" onclick="closeInstallGuide()">✕</button>
     </div>
     <p class="install-sub">Adicione o portal à tela inicial do seu dispositivo para acesso rápido</p>
     <div class="guide-tabs">
-      <button class="guide-tab" data-tab="android" onclick="switchTab('android')">🤖 Android</button>
-      <button class="guide-tab" data-tab="ios"     onclick="switchTab('ios')">🍎 iPhone/iPad</button>
-      <button class="guide-tab" data-tab="desktop" onclick="switchTab('desktop')">🖥️ Computador</button>
+      <button class="guide-tab" data-tab="android" onclick="switchTab('android')">Android</button>
+      <button class="guide-tab" data-tab="ios"     onclick="switchTab('ios')">iPhone/iPad</button>
+      <button class="guide-tab" data-tab="desktop" onclick="switchTab('desktop')">Computador</button>
     </div>
     <!-- ANDROID -->
     <div id="guide-android" style="display:none">
@@ -607,7 +618,7 @@ body::before {
         <div class="guide-step"><div class="step-num">1</div><div class="step-text">Abra o portal no <strong>Google Chrome</strong> ou <strong>Samsung Internet</strong></div></div>
         <div class="guide-step"><div class="step-num">2</div><div class="step-text">Toque nos <strong>3 pontinhos ⋮</strong> no canto superior direito do navegador</div></div>
         <div class="guide-step"><div class="step-num">3</div><div class="step-text">Selecione <strong>"Adicionar à tela inicial"</strong> ou <strong>"Instalar aplicativo"</strong></div></div>
-        <div class="guide-step"><div class="step-num">4</div><div class="step-text">Toque em <strong>Adicionar</strong> — o ícone aparecerá na sua tela inicial ✅</div></div>
+        <div class="guide-step"><div class="step-num">4</div><div class="step-text">Toque em <strong>Adicionar</strong> — o ícone aparecerá na sua tela inicial </div></div>
       </div>
     </div>
     <!-- iOS -->
@@ -616,7 +627,7 @@ body::before {
         <div class="guide-step"><div class="step-num">1</div><div class="step-text">Abra o portal no <strong>Safari</strong> (obrigatório no iPhone/iPad)</div></div>
         <div class="guide-step"><div class="step-num">2</div><div class="step-text">Toque no ícone de <strong>Compartilhar ⬆️</strong> na barra inferior da tela</div></div>
         <div class="guide-step"><div class="step-num">3</div><div class="step-text">Role a lista e toque em <strong>"Adicionar à Tela de Início" ➕</strong></div></div>
-        <div class="guide-step"><div class="step-num">4</div><div class="step-text">Toque em <strong>Adicionar</strong> — o ícone aparecerá na tela inicial ✅</div></div>
+        <div class="guide-step"><div class="step-num">4</div><div class="step-text">Toque em <strong>Adicionar</strong> — o ícone aparecerá na tela inicial </div></div>
       </div>
     </div>
     <!-- DESKTOP -->
@@ -625,9 +636,9 @@ body::before {
         <div class="guide-step"><div class="step-num">1</div><div class="step-text">Abra o portal no <strong>Google Chrome</strong> ou <strong>Microsoft Edge</strong></div></div>
         <div class="guide-step"><div class="step-num">2</div><div class="step-text">Clique no ícone <strong>⊕</strong> que aparece na barra de endereço (lado direito)</div></div>
         <div class="guide-step"><div class="step-num">3</div><div class="step-text">Clique em <strong>"Instalar"</strong> na janelinha que aparecer</div></div>
-        <div class="guide-step"><div class="step-num">4</div><div class="step-text">O portal abrirá como app independente — sem barra do navegador ✅</div></div>
+        <div class="guide-step"><div class="step-num">4</div><div class="step-text">O portal abrirá como app independente — sem barra do navegador </div></div>
       </div>
-      <button class="install-download-btn" onclick="downloadPortal()">⬇️ Baixar arquivo do Portal (.html)</button>
+      <button class="install-download-btn" onclick="downloadPortal()">Baixar arquivo do Portal (.html)</button>
       <p class="install-note">Salve o arquivo e abra diretamente no navegador, sem precisar de internet</p>
     </div>
   </div>
@@ -645,8 +656,8 @@ body::before {
         <div class="h-name">Portal de Sistemas Escolares</div>
       </div>
       <div class="h-date" id="h-date"></div>
-      <button id="h-install-btn" onclick="showInstallGuide()" title="Instalar Portal">📲 Instalar</button>
-      <button class="h-logout" onclick="doLogout()">↩ Sair</button>
+      <button id="h-install-btn" onclick="showInstallGuide()" title="Instalar Portal">Instalar</button>
+      <button class="h-logout" onclick="doLogout()">Sair</button>
     </div>
   </header>
 
@@ -661,7 +672,7 @@ body::before {
         <h1>Portal Sim PEI<br><span>EE Luiz Simioni Sobrinho</span></h1>
         <p class="hero-sub">Todos os documentos de gestão, pedagógicos e de apoio aos professores reunidos em um único lugar.</p>
         <div class="hero-stats">
-          <div class="hs-item"><span class="hs-val">20</span><span class="hs-label">Sistemas</span></div>
+          <div class="hs-item"><span class="hs-val">19</span><span class="hs-label">Sistemas</span></div>
           <div class="hs-item"><span class="hs-val">7</span><span class="hs-label">Categorias</span></div>
           <div class="hs-item"><span class="hs-val">2026</span><span class="hs-label">Ano letivo</span></div>
         </div>
@@ -683,7 +694,7 @@ body::before {
 
     <!-- ── GESTÃO ESCOLAR ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#E3F2FD; font-size:1.1rem;">🏫</div>
+      <div class="section-icon" style="background:#E3F2FD; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Gestão Escolar</div>
         <div class="sl-sub">Painéis e instrumentos da direção</div>
@@ -693,89 +704,59 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-gestao destaque-busca-ativa" href="https://portalsimbuscaativa.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="busca ativa aluno evasão frequência infrequência abandono escolar matrícula reengajamento">
-        <div class="sc-top">
-          <div class="sc-icon" style="font-size:1.4rem;">🔍</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Busca Ativa <span class="busca-badge">⚠ Urgente</span></div>
           <div class="sc-desc">Monitoramento e ações de reengajamento de alunos em situação de infrequência e risco de abandono escolar. Ferramenta prioritária do PEI.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Gestão · Prioridade</span>
-          <span class="sc-type">🔍 Busca Ativa Escolar</span>
-        </div>
+          <span class="sc-tag">Gestão · Prioridade</span></div>
       </a>
 
       <a class="sys-card cat-gestao destaque-vermelho" href="https://atendimento.educacao.sp.gov.br/" data-search="fale seduc atendimento portal educação sp">
-        <div class="sc-top">
-          <div class="sc-icon">📞</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Fale com SEDUC <span class="pulse-badge">Destaque</span></div>
           <div class="sc-desc">Bem-vindo ao Portal de Atendimento da Seduc - SP.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Gestão</span>
-          <span class="sc-type">🔗 Portal oficial</span>
-        </div>
+          <span class="sc-tag">Gestão</span></div>
       </a>
 
 
 
 
       <a class="sys-card cat-gestao" href="https://agenda-gestores-escola.vercel.app/" data-search="agenda gestores escola pública calendário datas">
-  <div class="sc-top">
-    <div class="sc-icon">📅</div>
-    <span class="sc-arrow">↗</span>
-  </div>
-  <div class="sc-body">
+<div class="sc-body">
     <div class="sc-title">Agenda Pública da Escola e dos Gestores</div>
     <div class="sc-desc">Calendário oficial do ano letivo com eventos, reuniões, prazos SEDUC e marcos pedagógicos do PEI.</div>
   </div>
   <div class="sc-meta">
-    <span class="sc-tag">Gestão</span>
-    <span class="sc-type">🔗 Agenda digital</span>
-  </div>
+    <span class="sc-tag">Gestão</span></div>
 </a>
 
       <a class="sys-card cat-gestao" href="https://sigma-one-indol.vercel.app/" data-search="agendamento de salas e equipamentos">
-        <div class="sc-top">
-          <div class="sc-icon">🖥️</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Agendamento de salas e equipamentos</div>
           <div class="sc-desc">Gestão de agendamento de salas e equipamentos, incluindo controle de reservas, organização de uso e otimização da disponibilidade dos recursos.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Gestão</span>
-          <span class="sc-type">🔗 Sistema de controle</span>
-        </div>
+          <span class="sc-tag">Gestão</span></div>
       </a>
 
     
 <a class="sys-card cat-gestao" href="https://horarioprofessoressim.vercel.app/" data-search="horário gestão horários ensino médio EFAF professores substituição">
-        <div class="sc-top">
-          <div class="sc-icon">📆</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Gestão de Horários</div>
           <div class="sc-desc">Sistema de horários da E.E. Prof. Luiz Simioni Sobrinho com visualização por turma e professor, controle de substituições e integração Firebase.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Gestão</span>
-          <span class="sc-type">🔗 Sistema interativo</span>
-        </div>
+          <span class="sc-tag">Gestão</span></div>
       </a>
     
 </div>
 
     <!-- ── PLANOS DE AÇÃO ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#FFF8E1; font-size:1.1rem;">🚀</div>
+      <div class="section-icon" style="background:#FFF8E1; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Planos de Ação</div>
         <div class="sl-sub">Programas e planos de ação institucionais</div>
@@ -784,101 +765,56 @@ body::before {
     <div class="section-rule"></div>
     <div class="cards-grid">
 
-      <a class="sys-card cat-pedagogico" href="https://programadeacao-v1.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="programa de ação PEI metas plano estratégico escola">
-        <div class="sc-top">
-          <div class="sc-icon">🚀</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
-          <div class="sc-title">Programa de Ação</div>
-          <div class="sc-desc">Programa de Ação do PEI com metas, premissas, valores e atribuições de cada segmento da equipe escolar.</div>
-        </div>
-        <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Programa oficial</span>
-        </div>
-      </a>
-
       <a class="sys-card cat-pedagogico" href="https://plano-de-acao2026v2.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="plano de ação PEI 2026 metas estratégico escola">
-        <div class="sc-top">
-          <div class="sc-icon">🎯</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Ação PEI 2026</div>
           <div class="sc-desc">Plano de Ação institucional do PEI 2026 com metas estratégicas, ações e indicadores de gestão escolar.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Plano oficial</span>
-        </div>
+          <span class="sc-tag">Planos de Ação</span></div>
       </a>
 
       <a class="sys-card cat-pedagogico" href="https://orientacaouso-a-etarefas-sp.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="plano de ação uso AEs tarefas SP orientação">
-        <div class="sc-top">
-          <div class="sc-icon">📝</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Ação uso de AEs e Tarefas SP</div>
           <div class="sc-desc">Orientações para uso das Atividades Estruturadas (AEs) e da plataforma Tarefa SP 2026.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Orientação oficial</span>
-        </div>
+          <span class="sc-tag">Planos de Ação</span></div>
       </a>
 
       <a class="sys-card cat-pedagogico" href="https://painel-diretorv2.vercel.app/" data-search="plano de ação diretor painel gestão PDCA">
-        <div class="sc-top">
-          <div class="sc-icon">📊</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Ação Diretor</div>
           <div class="sc-desc">Dashboard de gestão escolar completo com abas PDCA, indicadores, metas e acompanhamento institucional.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Sistema interativo</span>
-        </div>
+          <span class="sc-tag">Planos de Ação</span></div>
       </a>
 
       <a class="sys-card cat-pedagogico" href="https://simrodiziomedio.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="plano de ação uso de plataformas EFAF chromebook notebook anos finais fundamental">
-        <div class="sc-top">
-          <div class="sc-icon">💻</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Ação uso de Plataformas — EFAF</div>
           <div class="sc-desc">Organização do uso de plataformas e dispositivos (Chromebooks/notebooks) nas turmas dos Anos Finais do Ensino Fundamental.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Sistema de controle</span>
-        </div>
+          <span class="sc-tag">Planos de Ação</span></div>
       </a>
 
       <a class="sys-card cat-pedagogico" href="https://sistemarodiziomediov1.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="plano de ação uso de plataformas médio chromebook notebook ensino médio">
-        <div class="sc-top">
-          <div class="sc-icon">💻</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Ação uso de Plataformas — Médio</div>
           <div class="sc-desc">Organização do uso de plataformas e dispositivos (Chromebooks/notebooks) nas turmas do Ensino Médio.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Planos de Ação</span>
-          <span class="sc-type">🔗 Sistema de controle</span>
-        </div>
+          <span class="sc-tag">Planos de Ação</span></div>
       </a>
 
     </div>
 
     <!-- ── PEDAGÓGICO ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#E8F5E9; font-size:1.1rem;">📚</div>
+      <div class="section-icon" style="background:#E8F5E9; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Pedagógico</div>
         <div class="sl-sub">Planos, metas e instrumentos pedagógicos</div>
@@ -888,40 +824,28 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-pedagogico" href="https://onde-estamos.vercel.app/#plano" data-search="desempenho resultados SARESP metas 2026">
-        <div class="sc-top">
-          <div class="sc-icon">📈</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Desempenho e Resultados</div>
           <div class="sc-desc">Painel de desempenho e resultados baseado no SARESP 2025 com metas, estratégias e responsáveis.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Pedagógico</span>
-          <span class="sc-type">🔗 Painel oficial</span>
-        </div>
+          <span class="sc-tag">Pedagógico</span></div>
       </a>
 
      <a class="sys-card cat-pedagogico" href="https://cronograma-apoio-presencial.vercel.app/" data-search="apoio presencial reforço aulas complementação">
-        <div class="sc-top">
-          <div class="sc-icon">🧑‍🏫</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Apoio Presencial 2026</div>
           <div class="sc-desc">Organização e acompanhamento das ações de apoio presencial, reforço e complementação de aprendizagem.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Pedagógico</span>
-          <span class="sc-type">🔗 Sistema de apoio</span>
-        </div>
+          <span class="sc-tag">Pedagógico</span></div>
       </a>
 
     </div>
 
     <!-- ── ORIENTAÇÃO PEDAGÓGICA ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#EDE7F6; font-size:1.1rem;">🧭</div>
+      <div class="section-icon" style="background:#EDE7F6; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Orientação Pedagógica</div>
         <div class="sl-sub">Fundamentos e referências para a prática docente</div>
@@ -931,25 +855,19 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-pedagogico" href="https://tarefa-sp-analise-cognitiva.vercel.app/" data-search="ciência aprendizagem roadmap neurociência Dehaene cérebro cognição Tarefa SP">
-        <div class="sc-top">
-          <div class="sc-icon">🧠</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">O protocolo que o cérebro aprovaria</div>
           <div class="sc-desc">Uma análise dos fundamentos das Ciências Cognitivas que validam a arquitetura do Tarefa SP 2026 — por que ele funciona e o que a neurociência diz sobre cada escolha.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Orientação Pedagógica</span>
-          <span class="sc-type">📌 Referência visual</span>
-        </div>
+          <span class="sc-tag">Orientação Pedagógica</span></div>
       </a>
 
     </div>
 
     <!-- ── PAINEL DE MELHORIA CONTÍNUA — LÍDERES E REALIZADOR ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#F3E5F5; font-size:1.1rem;">⭐</div>
+      <div class="section-icon" style="background:#F3E5F5; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Painel de Melhoria Contínua Líderes e Realizador</div>
         <div class="sl-sub">Instrumentos de melhoria contínua para CGPGs, líderes e educadores</div>
@@ -959,40 +877,28 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-lideranca" href="https://painellideresfinal.vercel.app/" data-search="plano melhoria líderes CGPG coordenação pedagógica">
-        <div class="sc-top">
-          <div class="sc-icon">🌟</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Melhoria — Líderes</div>
           <div class="sc-desc">Versão do Plano de Melhoria 2026 voltada aos CGPGs e lideranças pedagógicas com atribuições específicas.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Liderança</span>
-          <span class="sc-type">🔗 Plano oficial</span>
-        </div>
+          <span class="sc-tag">Liderança</span></div>
       </a>
 
       <a class="sys-card cat-lideranca" href="https://plano-de-melhoria.vercel.app/" data-search="plano melhoria contínua educador responsáveis multiusuário indicadores excelência AR2 AL2 PEI realizador">
-        <div class="sc-top">
-          <div class="sc-icon">📋</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Plano de Melhoria Contínua do Educador</div>
           <div class="sc-desc">Sistema institucional multiusuário de planos de melhoria contínua PEI com indicadores AR2 e AL2, acompanhamento por responsáveis e métricas de progresso.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Liderança · Realizador</span>
-          <span class="sc-type">🔗 Sistema multiusuário</span>
-        </div>
+          <span class="sc-tag">Liderança · Realizador</span></div>
       </a>
 
     </div>
 
     <!-- ── FERRAMENTAS DOS PROFESSORES ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#FFF3E0; font-size:1.1rem;">✏️</div>
+      <div class="section-icon" style="background:#FFF3E0; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Ferramentas dos Professores</div>
         <div class="sl-sub">Agendas, tutorias e roteiros de trabalho docente</div>
@@ -1002,83 +908,55 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-professor" href="https://agenda-individual-v2.vercel.app/" data-search="agenda individual professor 2026 planejamento">
-        <div class="sc-top">
-          <div class="sc-icon">📒</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Agenda e Plano de Aula Professor - Médio</div>
           <div class="sc-desc">Agenda personalizada para cada docente com planejamento, registros de aulas e acompanhamento individual.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Professor</span>
-          <span class="sc-type">🔗 Agenda digital</span>
-        </div>
+          <span class="sc-tag">Professor</span></div>
       </a>
 
       <a class="sys-card cat-professor" href="https://agenda-efaf.vercel.app/" data-search="agenda individual professor 2026 planejamento">
-        <div class="sc-top">
-          <div class="sc-icon">📒</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Agenda e Plano de Aula Professor - EFAF</div>
           <div class="sc-desc">Agenda personalizada para cada docente com planejamento, registros de aulas e acompanhamento individual.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Professor</span>
-          <span class="sc-type">🔗 Agenda digital</span>
-        </div>
+          <span class="sc-tag">Professor</span></div>
       </a>
 
       <a class="sys-card cat-professor" href="https://tutoria-individual.vercel.app/" data-search="tutoria individual aluno professor PEI">
-        <div class="sc-top">
-          <div class="sc-icon">🤝</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Tutoria Individual</div>
           <div class="sc-desc">Sistema de registro e acompanhamento das tutorias individuais entre professor-tutor e aluno no PEI.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Professor</span>
-          <span class="sc-type">🔗 Sistema de tutoria</span>
-        </div>
+          <span class="sc-tag">Professor</span></div>
       </a>
 
       <a class="sys-card cat-professor" href="https://tutoria-coletiva.vercel.app/" data-search="tutoria coletiva grupo turma professor">
-        <div class="sc-top">
-          <div class="sc-icon">👥</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">Tutoria Coletiva</div>
           <div class="sc-desc">Ferramenta de planejamento e registro das tutorias coletivas com turmas, pautas e encaminhamentos.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Professor</span>
-          <span class="sc-type">🔗 Sistema de tutoria</span>
-        </div>
+          <span class="sc-tag">Professor</span></div>
       </a>
 
       <a class="sys-card cat-professor destaque-notebooklm" href="https://notebooklm.google.com/notebook/5378a085-98f6-42eb-bb48-cb91379a1a8c?authuser=1" target="_blank" rel="noopener noreferrer" data-search="notebooklm inteligencia artificial PEI programa ensino integral dúvidas estudo documentos IA google">
-        <div class="sc-top">
-          <div class="sc-icon" style="font-size:1.5rem; display:flex; align-items:center; justify-content:center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#1A73E8"/>
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#34A853" opacity="0.5"/>
-            </svg>
-          </div>
-          <span class="sc-arrow">↗</span>
+<div class="sc-body">
+          <div class="sc-title">Assistente PEI <span class="nlm-badge">✦ IA</span></div>
+          <div class="sc-desc">Base de conhecimento do Programa de Ensino Integral. Tire dúvidas, pesquise documentos e aprofunde estudos com Inteligência Artificial via NotebookLM Google.</div>
         </div>
-        
+        <div class="sc-meta">
+          <span class="sc-tag">Professor</span></div>
       </a>
 
     </div>
 
     <!-- ── CONVIVA ── -->
     <div class="section-label">
-      <div class="section-icon" style="background:#E0F7FA; font-size:1.1rem;">🛡️</div>
+      <div class="section-icon" style="background:#E0F7FA; font-size:1.1rem;"></div>
       <div class="section-label-text">
         <div class="sl-title">Conviva</div>
         <div class="sl-sub">Relatório da Avaliação da Vulnerabilidade Estudantil</div>
@@ -1088,33 +966,21 @@ body::before {
     <div class="cards-grid">
 
       <a class="sys-card cat-conviva" href="https://ravemediov1.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="conviva vulnerabilidade estudantil ensino médio RAVE relatório avaliação">
-        <div class="sc-top">
-          <div class="sc-icon">🎓</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">RAVE — Ensino Médio</div>
           <div class="sc-desc">Relatório da Avaliação da Vulnerabilidade Estudantil para turmas do Ensino Médio.</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Conviva</span>
-          <span class="sc-type">🔗 Relatório interativo</span>
-        </div>
+          <span class="sc-tag">Conviva</span></div>
       </a>
 
       <a class="sys-card cat-conviva" href="https://raveanosfianaisv2.vercel.app/" target="_blank" rel="noopener noreferrer" data-search="conviva vulnerabilidade estudantil anos finais EFAF RAVE relatório avaliação">
-        <div class="sc-top">
-          <div class="sc-icon">📚</div>
-          <span class="sc-arrow">↗</span>
-        </div>
-        <div class="sc-body">
+<div class="sc-body">
           <div class="sc-title">RAVE — Anos Finais</div>
           <div class="sc-desc">Relatório da Avaliação da Vulnerabilidade Estudantil para turmas dos Anos Finais (EFAF).</div>
         </div>
         <div class="sc-meta">
-          <span class="sc-tag">Conviva</span>
-          <span class="sc-type">🔗 Relatório interativo</span>
-        </div>
+          <span class="sc-tag">Conviva</span></div>
       </a>
 
     </div>
@@ -1255,7 +1121,7 @@ function downloadPortal() {
   a.download = 'Portal-Sim-PEI-2026.html';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('✅ Download iniciado!');
+  showToast(' Download iniciado!');
 }
 
 // Toast de feedback
